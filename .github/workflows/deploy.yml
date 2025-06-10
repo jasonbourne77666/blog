@@ -37,6 +37,7 @@ jobs:
           target: "/home/blog"
           rm: true # 删除目标目录中的现有文件
           timeout: 10m
+          debug: true
 
       # 步骤3：通过SSH连接到服务器并执行部署
       - name: Deploy to Aliyun ECS
