@@ -1,4 +1,4 @@
-name: Deploy Blog API # 定义工作流名称，用于在GitHub Actions中显示
+name: Deploy Blog # 定义工作流名称，用于在GitHub Actions中显示
 
 # 触发条件配置
 on:
