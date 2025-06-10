@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 // 主题类型定义
 export type Theme = "light" | "dark" | "system";
@@ -32,12 +38,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   // 解析实际应用的主题
-  const resolveTheme = (currentTheme: Theme): "light" | "dark" => {
+  const resolveTheme = useCallback((currentTheme: Theme): "light" | "dark" => {
     if (currentTheme === "system") {
       return getSystemTheme();
     }
     return currentTheme;
-  };
+  }, []);
 
   // 应用主题到DOM
   const applyTheme = (resolvedTheme: "light" | "dark") => {
@@ -69,7 +75,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setResolvedTheme(systemTheme);
       applyTheme(systemTheme);
     }
-  }, []);
+  }, [resolveTheme]);
 
   // 监听主题变化（仅在挂载后执行）
   useEffect(() => {
@@ -82,7 +88,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     // 保存主题设置到localStorage
     localStorage.setItem("theme", theme);
-  }, [theme, mounted]);
+  }, [theme, mounted, resolveTheme]);
 
   // 监听系统主题变化（仅当选择system时且已挂载）
   useEffect(() => {
@@ -97,7 +103,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [theme, mounted]);
+  }, [theme, mounted, resolveTheme]);
 
   const value: ThemeContextType = {
     theme,
