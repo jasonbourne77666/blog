@@ -1,0 +1,9 @@
+/* 自定义渐变背景类 */
+.bg-theme-gradient {
+  background: linear-gradient(
+    to top left,
+    var(--gradient-from),
+    var(--gradient-via),
+    var(--gradient-to)
+  );
+}

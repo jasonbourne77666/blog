@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+/* 浅色模式的CSS变量 */
+:root {
+  /* 页面基础背景色 - 用于整个页面的主背景 */
+  --background: #ffffff;
+  /* 页面基础前景色 - 用于主要文字颜色 */
+  --foreground: #171717;
+
+  /* 渐变背景变量 - 浅色主题 */
+  --gradient-from: #f9fafb; /* gray-50 */
+  --gradient-via: rgba(241, 245, 249, 0.3); /* slate-100/30 */
+  --gradient-to: #f9fafb; /* gray-50 */
+
+  /* 卡片背景色 - 用于卡片、面板等容器的背景 */
+  --card: #ffffff;
+  /* 卡片前景色 - 用于卡片内的文字颜色 */
+  --card-foreground: #171717;
+
+  /* 弹出层背景色 - 用于下拉菜单、工具提示等弹出内容的背景 */
+  --popover: #ffffff;
+  /* 弹出层前景色 - 用于弹出层内的文字颜色 */
+  --popover-foreground: #171717;
+
+  /* 主要强调色 - 用于重要按钮、链接、标题等需要突出的元素 */
+  --primary: #0f172a;
+  /* 主要强调色的前景色 - 用于主要强调色背景上的文字 */
+  --primary-foreground: #f8fafc;
+
+  /* 次要背景色 - 用于次要按钮、标签等不太重要的背景元素 */
+  --secondary: #f1f5f9;
+  /* 次要前景色 - 用于次要背景色上的文字 */
+  --secondary-foreground: #0f172a;
+
+  /* 静音背景色 - 用于禁用状态、占位符等低对比度的背景 */
+  --muted: #f1f5f9;
+  /* 静音前景色 - 用于辅助文字、说明文本等次要信息 */
+  --muted-foreground: #64748b;
+
+  /* 强调背景色 - 用于悬停状态、选中状态等交互反馈的背景 */
+  --accent: #f1f5f9;
+  /* 强调前景色 - 用于强调背景色上的文字 */
+  --accent-foreground: #0f172a;
+
+  /* 危险/错误色 - 用于错误提示、删除按钮等危险操作 */
+  --destructive: #ef4444;
+  /* 危险色的前景色 - 用于危险色背景上的文字 */
+  --destructive-foreground: #f8fafc;
+
+  /* 边框颜色 - 用于所有边框、分割线等 */
+  --border: #e2e8f0;
+  /* 输入框边框色 - 用于表单输入框的边框 */
+  --input: #e2e8f0;
+  /* 焦点环颜色 - 用于键盘导航时的焦点指示器 */
+  --ring: #0f172a;
+
+  /* 设置颜色方案，帮助浏览器优化渲染 */
+  color-scheme: light;
+}
+
+/* 深色模式的CSS变量 */
+.dark {
+  /* 页面基础背景色 - 深色主题的页面背景 */
+  --background: #0a0a0a;
+  /* 页面基础前景色 - 深色主题的主要文字颜色 */
+  --foreground: #ededed;
+
+  /* 渐变背景变量 - 深色主题 */
+  --gradient-from: #000000; /* black */
+  --gradient-via: rgba(82, 82, 91, 0.2); /* zinc-600/20 */
+  --gradient-to: #000000; /* black */
+
+  /* 卡片背景色 - 深色主题的卡片、面板背景 */
+  --card: #0a0a0a;
+  /* 卡片前景色 - 深色主题的卡片内文字颜色 */
+  --card-foreground: #ededed;
+
+  /* 弹出层背景色 - 深色主题的下拉菜单、工具提示背景 */
+  --popover: #0a0a0a;
+  /* 弹出层前景色 - 深色主题的弹出层内文字颜色 */
+  --popover-foreground: #ededed;
+
+  /* 主要强调色 - 深色主题的重要按钮、链接、标题颜色 */
+  --primary: #ededed;
+  /* 主要强调色的前景色 - 深色主题的主要强调色背景上的文字 */
+  --primary-foreground: #0a0a0a;
+
+  /* 次要背景色 - 深色主题的次要按钮、标签背景 */
+  --secondary: #1a1a1a;
+  /* 次要前景色 - 深色主题的次要背景色上的文字 */
+  --secondary-foreground: #ededed;
+
+  /* 静音背景色 - 深色主题的禁用状态、占位符背景 */
+  --muted: #1a1a1a;
+  /* 静音前景色 - 深色主题的辅助文字、说明文本颜色 */
+  --muted-foreground: #a1a1aa;
+
+  /* 强调背景色 - 深色主题的悬停状态、选中状态背景 */
+  --accent: #1a1a1a;
+  /* 强调前景色 - 深色主题的强调背景色上的文字 */
+  --accent-foreground: #ededed;
+
+  /* 危险/错误色 - 深色主题的错误提示、删除按钮颜色（保持红色以确保识别性） */
+  --destructive: #ef4444;
+  /* 危险色的前景色 - 深色主题的危险色背景上的文字 */
+  --destructive-foreground: #f8fafc;
+
+  /* 边框颜色 - 深色主题的所有边框、分割线颜色 */
+  --border: #27272a;
+  /* 输入框边框色 - 深色主题的表单输入框边框 */
+  --input: #27272a;
+  /* 焦点环颜色 - 深色主题的键盘导航焦点指示器 */
+  --ring: #ededed;
+
+  /* 设置颜色方案为深色 */
+  color-scheme: dark;
+}
+
+/* 定义主题内联样式变量 - 将CSS自定义属性映射到Tailwind CSS的主题系统中 */
+@theme {
+  /* 背景色映射 - 对应 bg-background 类 */
+  --color-background: var(--background);
+  /* 前景色映射 - 对应 text-foreground 类 */
+  --color-foreground: var(--foreground);
+
+  /* 卡片颜色映射 - 对应 bg-card 和 text-card-foreground 类 */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* 弹出层颜色映射 - 对应 bg-popover 和 text-popover-foreground 类 */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* 主要颜色映射 - 对应 bg-primary 和 text-primary-foreground 类 */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* 次要颜色映射 - 对应 bg-secondary 和 text-secondary-foreground 类 */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  /* 静音颜色映射 - 对应 bg-muted 和 text-muted-foreground 类 */
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* 强调颜色映射 - 对应 bg-accent 和 text-accent-foreground 类 */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* 危险颜色映射 - 对应 bg-destructive 和 text-destructive-foreground 类 */
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* 边框和输入框颜色映射 - 对应 border-border、border-input 和 ring-ring 类 */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* 字体映射 - 对应 font-sans 和 font-mono 类 */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* 渐变背景映射 - 对应自定义渐变类 */
+  --color-gradient-from: var(--gradient-from);
+  --color-gradient-via: var(--gradient-via);
+  --color-gradient-to: var(--gradient-to);
+}
+
+/* 基础样式 */
+html {
+  /* 防止主题切换时的闪烁 */
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  /* 减少过渡时间，让切换更快 */
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* 确保主题切换时的平滑过渡，但减少过渡时间 */
+* {
+  transition: background-color 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* 防止在主题切换时出现白屏 */
+html,
+body {
+  /* 确保始终有背景色 */
+  min-height: 100vh;
+}
+
+/* 确保所有元素都能正确继承主题颜色 */
+*,
+*::before,
+*::after {
+  border-color: var(--border);
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
