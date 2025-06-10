@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import { useMousePosition } from "@/util/mouse";
+import { useTheme } from "../contexts/ThemeContext";
 
 interface ParticlesProps {
   className?: string;
@@ -28,6 +29,20 @@ export default function Particles({
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
 
+  // 获取当前主题
+  const { resolvedTheme } = useTheme();
+
+  // 根据主题获取粒子颜色
+  const getParticleColor = (alpha: number) => {
+    if (resolvedTheme === "dark") {
+      // 深色主题：使用柔和的白色粒子，带有微妙的蓝色调
+      return `rgba(248, 250, 252, ${alpha * 0.8})`;
+    } else {
+      // 浅色主题：使用柔和的深色粒子，带有微妙的灰色调
+      return `rgba(71, 85, 105, ${alpha * 0.6})`;
+    }
+  };
+
   useEffect(() => {
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");
@@ -48,6 +63,17 @@ export default function Particles({
   useEffect(() => {
     initCanvas();
   }, [refresh]);
+
+  // 监听主题变化，重新绘制粒子
+  useEffect(() => {
+    if (circles.current.length > 0) {
+      // 主题变化时重新绘制所有粒子，使其颜色适应新主题
+      clearContext();
+      circles.current.forEach((circle) => {
+        drawCircle(circle, true);
+      });
+    }
+  }, [resolvedTheme]);
 
   const initCanvas = () => {
     resizeCanvas();
@@ -125,7 +151,8 @@ export default function Particles({
       context.current.translate(translateX, translateY);
       context.current.beginPath();
       context.current.arc(x, y, size, 0, 2 * Math.PI);
-      context.current.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      // 使用主题感知的颜色
+      context.current.fillStyle = getParticleColor(alpha);
       context.current.fill();
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
 
