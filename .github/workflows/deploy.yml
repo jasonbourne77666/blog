@@ -7,12 +7,12 @@ on:
       environment:
         description: "部署环境" # 参数描述，显示在GitHub UI中
         required: true # 设为必填项，用户必须选择一个值才能触发工作流
-        default: "main" # 默认值，如果用户不做选择，将使用此值
+        default: "production" # 默认值，如果用户不做选择，将使用此值
         type: choice # 参数类型为选择型，用户从options中选择
         options: # 可选择的选项列表
-          - main # 生产环境
-          - dev # 预发布环境
-          - test # 开发环境
+          - production # 生产环境
+          - staging # 预发布环境
+          - development # 开发环境
 
 jobs:
   # 部署到服务器
@@ -33,7 +33,6 @@ jobs:
           username: ${{ secrets.ALIYUN_ECS_USERNAME }}
           key: ${{ secrets.ALIYUN_ECS_SSH_KEY }}
           port: 22
-          branch: ${{ inputs.environment }}
           source: "."
           target: "/home/blog"
           rm: true # 删除目标目录中的现有文件
