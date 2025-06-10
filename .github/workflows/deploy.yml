@@ -24,7 +24,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         timeout-minutes: 5
-
+      - name: Echo secrets
+        run: |
+          echo "ALIYUN_ECS_HOST: ${{ secrets.ALIYUN_ECS_HOST }}"
+          echo "ALIYUN_ECS_USERNAME: ${{ secrets.ALIYUN_ECS_USERNAME }}"
+          echo "ALIYUN_ECS_SSH_KEY: ${{ secrets.ALIYUN_ECS_SSH_KEY }}"
       # 步骤2：复制代码到服务器
       - name: Copy code to server
         uses: appleboy/scp-action@master
