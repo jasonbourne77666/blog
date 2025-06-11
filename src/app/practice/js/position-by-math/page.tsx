@@ -167,10 +167,18 @@ const App = () => {
   return (
     <div>
       <div className="grid grid-cols-3 gap-4" style={{ padding: "20px 0" }}>
-        <button onClick={waves.wave}>波浪</button>
-        <button onClick={waves.line}>直线</button>
-        <button onClick={waves.crossLine}>交叉直线</button>
-        <button onClick={waves.crossWave}>交叉波浪</button>
+        <button className="primary-button" onClick={waves.wave}>
+          波浪
+        </button>
+        <button className="primary-button" onClick={waves.line}>
+          直线
+        </button>
+        <button className="primary-button" onClick={waves.crossLine}>
+          交叉直线
+        </button>
+        <button className="primary-button" onClick={waves.crossWave}>
+          交叉波浪
+        </button>
       </div>
       <ul
         className={classnames(style.mathPositionWrapper, "mathPositionWrapper")}
