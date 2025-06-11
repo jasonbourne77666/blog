@@ -1,17 +1,14 @@
-import React from 'react';
-import { Nav } from '@/app/practice/Nav';
-import styles from './layout.module.scss';
+import Header from "@/app/components/Header";
 
-const PracticeLayout = (props: React.PropsWithChildren) => {
+export default function ProjectsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <section className={styles.container}>
-      <Nav />
-      <main className={styles.main}>{props.children}</main>
-      <footer className={styles.footer}>
-        <span>Learning never stop</span>
-      </footer>
-    </section>
+    <div className="relative min-h-screen bg-theme-gradient from-zinc-900 via-zinc-400/10 to-zinc-900 pt-20">
+      <Header />
+      <div className="container mx-auto  ">{children}</div>
+    </div>
   );
-};
-
-export default PracticeLayout;
+}

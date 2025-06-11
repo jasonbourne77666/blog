@@ -106,6 +106,7 @@ const Interceptor: React.FC = (props: any) => {
       </button>
       <button
         onClick={() => {
+          // 实现一个对象的entries方法，使对象可以被for of 遍历
           const a = { a: 1, b: 2, c: 3 };
 
           const createRanger = (obj) => {

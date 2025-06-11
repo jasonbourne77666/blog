@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect } from "react";
 import classnames from "classnames";
-import style from "./index.module.scss";
+import style from "../index.module.scss";
 
 // 曲线函数计算
 class Curve {

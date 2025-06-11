@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useEffect, useState } from "react";
 import style from "./index.module.scss";
 import { liyrc } from "./data";

@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 // import { Flipper, Flipped } from 'react-flip-toolkit';
 
-import style from "./index.module.scss";
+import style from "../index.module.scss";
 
 class Flip {
   dom: HTMLElement;

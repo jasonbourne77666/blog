@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef } from "react";
 import style from "./index.module.scss";
 import { PlusCircle } from "lucide-react";

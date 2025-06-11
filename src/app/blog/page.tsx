@@ -1,17 +1,17 @@
 import Header from "../components/Header";
 import { Card } from "../components/Card";
-import { Article } from "./article";
+import { Wrapper } from "@/app/components/Wrapper";
 
 const data = [
   {
-    slug: "blog-1",
+    slug: "/blog/blog-1",
     title: "博客1",
     description: "博客1的描述",
     date: "2025-01-01",
     views: 100000,
   },
   {
-    slug: "blog-2",
+    slug: "/blog/blog-2",
     title: "博客2",
     description: "博客2的描述",
     date: "2025-01-02",
@@ -100,12 +100,12 @@ export default async function BlogPage() {
         <div className="w-full h-px bg-zinc-200 dark:bg-zinc-800" />
         <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
           <Card>
-            <Article blog={data[0]} views={data[0].views ?? 0} />
+            <Wrapper blog={data[0]} views={data[0].views ?? 0} />
           </Card>
           <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 ">
             {data.map((blog) => (
               <Card key={blog.slug}>
-                <Article blog={blog} views={blog.views ?? 0} />
+                <Wrapper blog={blog} views={blog.views ?? 0} />
               </Card>
             ))}
           </div>
@@ -118,7 +118,7 @@ export default async function BlogPage() {
               .filter((_, i) => i % 3 === 0)
               .map((blog) => (
                 <Card key={blog.slug}>
-                  <Article blog={blog} views={blog.views ?? 0} />
+                  <Wrapper blog={blog} views={blog.views ?? 0} />
                 </Card>
               ))}
           </div>
@@ -127,7 +127,7 @@ export default async function BlogPage() {
               .filter((_, i) => i % 3 === 1)
               .map((blog) => (
                 <Card key={blog.slug}>
-                  <Article blog={blog} views={blog.views ?? 0} />
+                  <Wrapper blog={blog} views={blog.views ?? 0} />
                 </Card>
               ))}
           </div>
@@ -136,7 +136,7 @@ export default async function BlogPage() {
               .filter((_, i) => i % 3 === 2)
               .map((blog) => (
                 <Card key={blog.slug}>
-                  <Article blog={blog} views={blog.views ?? 0} />
+                  <Wrapper blog={blog} views={blog.views ?? 0} />
                 </Card>
               ))}
           </div>
