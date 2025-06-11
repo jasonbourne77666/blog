@@ -1,0 +1,29 @@
+.component {
+  height: 400px;
+  width: 400px;
+  background-color: #f7f7f7;
+  position: relative;
+}
+
+.tips {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  color: #ff791a;
+  background: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+}
+
+.osvg {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.ocircle {
+  /* 描边虚线 */
+  /* stroke-dasharray: 80, 20; */
+  /* stroke-dasharray: calc(2 * 3.14 * 100); */
+
+  /* 描边虚线距离起点的偏移值 */
+  /* stroke-dashoffset: calc(2 * 3.14 * 100); */
+}

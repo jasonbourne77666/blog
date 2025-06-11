@@ -1,0 +1,35 @@
+.container {
+  background-color: gainsboro;
+  padding: 20px 0 100px;
+
+  .audio {
+    display: block;
+    width: 450px;
+    margin: 0 auto;
+  }
+  .lyricsWrapper {
+    width: 800px;
+    margin: 100px auto 0;
+    text-align: center;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid #fff;
+
+    > ul {
+      height: auto;
+      transition: 0.6s;
+    }
+
+    li {
+      height: 30px;
+      line-height: 30px;
+      list-style: none;
+      transition: 0.2s;
+
+      &.active {
+        color: #fff;
+        transform: scale(1.2);
+      }
+    }
+  }
+}

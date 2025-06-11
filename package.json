@@ -14,11 +14,16 @@
     "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./src"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
+    "copy-to-clipboard": "^3.3.3",
+    "device-detector-js": "^3.0.3",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.514.0",
     "motion": "^12.17.0",
     "next": "15.3.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "screenfull": "^6.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -34,6 +39,7 @@
     "eslint-config-next": "15.3.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.0",
+    "sass": "^1.89.2",
     "tailwindcss": "^4",
     "tailwindcss-debug-screens": "^3.0.1",
     "typescript": "^5"

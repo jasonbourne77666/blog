@@ -1,0 +1,106 @@
+.title {
+  color: #333;
+  line-height: 2;
+}
+
+.title span {
+  background: linear-gradient(to right, #ec695c, #61c454) no-repeat right bottom;
+  background-size: 0 2px;
+  transition: background-size 1300ms;
+}
+
+.title span:hover {
+  cursor: pointer;
+  background-position-x: left;
+  background-size: 100% 2px;
+}
+
+.opacity {
+  position: relative;
+  h1 {
+    font-size: 30px;
+    color: #61c454;
+  }
+  .cover {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+  }
+
+  .img {
+    width: 384px;
+    height: 240px;
+    position: relative;
+
+    &:hover {
+      .hover {
+        width: 100%;
+      }
+    }
+
+    img {
+      vertical-align: top;
+    }
+    .hover {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 0;
+      z-index: 2;
+      // 灰度
+      backdrop-filter: grayscale(2);
+      transition: width 0.3s ease;
+    }
+  }
+}
+
+.cover1 {
+  transition: 1s;
+
+  &:hover {
+    transform: perspective(500px) rotate3d(0, 0, 1, 80deg);
+  }
+}
+.threed {
+  width: 200px;
+  height: 240px;
+  // transform: translateY(-50%);
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+    .cover {
+      box-shadow: 0 35px 35px -8px rgba(0, 0, 0, 0.5);
+      transform: perspective(500px) rotateX(25deg);
+    }
+    .title {
+      transform: perspective(500px) translate3d(0, -25px, 50px);
+    }
+    .hero {
+      opacity: 1;
+      transform: perspective(500px) translate3d(0, -50px, 50px);
+    }
+  }
+
+  img {
+    width: 100%;
+    position: absolute;
+    transition: 0.5s;
+  }
+  .cover {
+    z-index: 1;
+  }
+
+  .hero {
+    z-index: 2;
+    opacity: 0;
+  }
+  .title {
+    z-index: 3;
+    height: auto;
+    bottom: 0;
+  }
+}
