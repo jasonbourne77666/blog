@@ -9,7 +9,9 @@
     "start": "next start --port 3010",
     "lint": "next lint",
     "docker:build": "node scripts/docker/build-and-push.js",
-    "docker:quick": "node ./scripts/docker/quick-build.js"
+    "docker:quick": "node ./scripts/docker/quick-build.js",
+    "prepare": "husky",
+    "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./src"
   },
   "dependencies": {
     "lucide-react": "^0.514.0",
@@ -19,6 +21,8 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/postcss": "^4",
@@ -28,8 +32,15 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
     "tailwindcss": "^4",
     "tailwindcss-debug-screens": "^3.0.1",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts}": [
+      "npm run lint:script"
+    ]
   }
 }
