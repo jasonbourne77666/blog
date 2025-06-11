@@ -117,6 +117,9 @@
 }
 
 /* 定义主题内联样式变量 - 将CSS自定义属性映射到Tailwind CSS的主题系统中 */
+/* Tailwind v4 Dark Mode 配置 - 定义dark变体，当祖先元素有.dark类时应用dark:前缀样式 */
+@variant dark (.dark &);
+
 @theme {
   /* 背景色映射 - 对应 bg-background 类 */
   --color-background: var(--background);
