@@ -70,20 +70,29 @@
     line-height: 0%;
     letter-spacing: 0.25em;
     opacity: 0;
+    color: transparent;
   }
 
   25% {
     line-height: 0%;
     opacity: 0;
+    color: transparent;
+  }
+
+  50% {
+    opacity: 100%;
+    color: transparent;
   }
 
   80% {
     opacity: 100%;
+    color: var(--foreground);
   }
 
   to {
     line-height: 100%;
     opacity: 100%;
+    color: var(--foreground);
   }
 }
 

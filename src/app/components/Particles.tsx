@@ -35,11 +35,12 @@ export default function Particles({
   // 根据主题获取粒子颜色
   const getParticleColor = (alpha: number) => {
     if (resolvedTheme === "dark") {
-      // 深色主题：使用柔和的白色粒子，带有微妙的蓝色调
-      return `rgba(248, 250, 252, ${alpha * 0.8})`;
+      // 深色主题：使用较暗的白色粒子，降低透明度
+      const minAlpha = 0.15; // 降低最低可见度
+      return `rgba(255, 255, 255, ${Math.max(alpha * 0.4, minAlpha)})`;
     } else {
-      // 浅色主题：使用柔和的深色粒子，带有微妙的灰色调
-      return `rgba(71, 85, 105, ${alpha * 0.6})`;
+      // 浅色主题：使用更深的暗色粒子，增加对比度
+      return `rgba(30, 41, 59, ${Math.min(alpha * 1.1, 0.8)})`;
     }
   };
 
@@ -49,12 +50,18 @@ export default function Particles({
     }
     initCanvas();
     animate();
-    window.addEventListener("resize", initCanvas);
+
+    // 创建一个主题感知的resize处理器
+    const handleResize = () => {
+      initCanvas();
+    };
+
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", initCanvas);
+      window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [resolvedTheme]); // 添加resolvedTheme依赖
 
   useEffect(() => {
     onMouseMove();
@@ -62,16 +69,15 @@ export default function Particles({
 
   useEffect(() => {
     initCanvas();
-  }, [refresh]);
+  }, [refresh, resolvedTheme]);
 
-  // 监听主题变化，重新绘制粒子
+  // 监听主题变化，重新创建所有粒子以适应新主题
   useEffect(() => {
+    console.log("Theme changed to:", resolvedTheme); // 调试日志
     if (circles.current.length > 0) {
-      // 主题变化时重新绘制所有粒子，使其颜色适应新主题
-      clearContext();
-      circles.current.forEach((circle) => {
-        drawCircle(circle, true);
-      });
+      // 主题变化时清空现有粒子并重新创建
+      circles.current.length = 0;
+      drawParticles();
     }
   }, [resolvedTheme]);
 
@@ -125,9 +131,17 @@ export default function Particles({
     const y = Math.floor(Math.random() * canvasSize.current.h);
     const translateX = 0;
     const translateY = 0;
-    const size = Math.floor(Math.random() * 2) + 0.1;
+    // 根据主题调整粒子大小
+    const size =
+      resolvedTheme === "dark"
+        ? Math.floor(Math.random() * 3) + 1.5 // 深色主题：适中的粒子 1.5-4.5
+        : Math.floor(Math.random() * 3) + 0.5; // 浅色主题：正常大小 0.5-3.5
     const alpha = 0;
-    const targetAlpha = parseFloat((Math.random() * 0.6 + 0.1).toFixed(1));
+    // 根据主题调整目标透明度
+    const targetAlpha =
+      resolvedTheme === "dark"
+        ? parseFloat((Math.random() * 0.4 + 0.2).toFixed(1)) // 深色主题：较低透明度范围 0.2-0.6
+        : parseFloat((Math.random() * 0.8 + 0.2).toFixed(1)); // 浅色主题：正常透明度
     const dx = (Math.random() - 0.5) * 0.2;
     const dy = (Math.random() - 0.5) * 0.2;
     const magnetism = 0.1 + Math.random() * 4;
@@ -149,11 +163,41 @@ export default function Particles({
     if (context.current) {
       const { x, y, translateX, translateY, size, alpha } = circle;
       context.current.translate(translateX, translateY);
+
+      // 添加发光效果
+      if (resolvedTheme === "dark") {
+        // 深色主题：柔和的发光效果
+        context.current.shadowColor = `rgba(255, 255, 255, 0.3)`;
+        context.current.shadowBlur = size * 2;
+      } else {
+        // 浅色主题：较轻的阴影效果
+        context.current.shadowColor = `rgba(30, 41, 59, ${alpha * 0.2})`;
+        context.current.shadowBlur = size * 2;
+      }
+
+      // 绘制主要粒子
       context.current.beginPath();
       context.current.arc(x, y, size, 0, 2 * Math.PI);
       // 使用主题感知的颜色
       context.current.fillStyle = getParticleColor(alpha);
       context.current.fill();
+
+      // 在深色主题下添加轻微的外圈发光效果
+      if (resolvedTheme === "dark") {
+        context.current.shadowColor = "transparent";
+        context.current.shadowBlur = 0;
+
+        // 单层外圈（轻微光晕）
+        context.current.beginPath();
+        context.current.arc(x, y, size * 1.5, 0, 2 * Math.PI);
+        context.current.fillStyle = `rgba(255, 255, 255, ${alpha * 0.1})`;
+        context.current.fill();
+      }
+
+      // 重置阴影效果
+      context.current.shadowColor = "transparent";
+      context.current.shadowBlur = 0;
+
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       if (!update) {
