@@ -94,9 +94,8 @@ class Request {
   private async handleResponse<T>(response: Response): Promise<T> {
     // 清除超时定时器
     this.clearTimeout();
-
     // 检查HTTP状态码
-    if (!response.ok) {
+    if (response.status !== 200) {
       const error: RequestError = new Error('请求失败');
       error.status = response.status;
       error.type = 'error';
@@ -107,11 +106,12 @@ class Request {
     const data: ResponseData<T> = await response.json();
 
     // 检查业务状态码
-    if (data.code !== 0) {
-      const error: RequestError = new Error(data.message || '请求失败');
-      error.code = data.code;
-      error.type = 'error';
-      throw error;
+    if (data.code !== 200) {
+      // const error: RequestError = new Error(data.message || '请求失败');
+      // error.code = data.code;
+      // error.type = 'error';
+      // throw error;
+      message.error(data.message);
     }
 
     return data.data; // 返回业务数据

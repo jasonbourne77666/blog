@@ -1,11 +1,11 @@
 const dev = {
-  NEXT_PUBLIC_API_BASE_URL: 'http://localhost:3000/api',
+  NEXT_PUBLIC_API_BASE_URL: 'http://localhost:3001',
   NEXT_PUBLIC_NODE_ENV: 'dev',
 };
 
 const prod = {
-  NEXT_PUBLIC_API_BASE_URL: 'https://api.yourdomain.com',
-  NODE_ENNEXT_PUBLIC_NODE_ENVV: 'prod',
+  NEXT_PUBLIC_API_BASE_URL: '47.109.95.244',
+  NEXT_PUBLIC_NODE_ENV: 'prod',
 };
 
 module.exports = {

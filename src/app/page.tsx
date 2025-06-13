@@ -1,13 +1,16 @@
 import Header from './components/Header';
 import Particles from './components/Particles';
 import Link from 'next/link';
+import request from '@/util/request';
 
 const navigation = [
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const res = await request.get<string>('/health');
+
   return (
     <main className='min-h-screen text-foreground overflow-hidden  bg-theme-gradient relative z-10'>
       {/* 主题渐变背景说明：
