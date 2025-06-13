@@ -22,7 +22,7 @@ export default function Particles({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
-   
+
   const circles = useRef<any[]>([]);
   const mousePosition = useMousePosition();
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -73,7 +73,6 @@ export default function Particles({
 
   // 监听主题变化，重新创建所有粒子以适应新主题
   useEffect(() => {
-    console.log('Theme changed to:', resolvedTheme); // 调试日志
     if (circles.current.length > 0) {
       // 主题变化时清空现有粒子并重新创建
       circles.current.length = 0;

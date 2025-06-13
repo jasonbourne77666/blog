@@ -10,7 +10,7 @@ const navigation = [
 
 export default async function Home() {
   const res = await request.get<string>('/health');
-
+  console.log('res', res);
   return (
     <main className='min-h-screen text-foreground overflow-hidden  bg-theme-gradient relative z-10'>
       {/* 主题渐变背景说明：
@@ -45,7 +45,7 @@ export default async function Home() {
         <div className='hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0' />
         <div className='my-16 text-center animate-fade-in'>
           <h2 className='text-sm text-zinc-500 '>
-            就一个个人网站，学习和测试用
+            就一个个人网站，学习和测试用 {res || ''}
           </h2>
         </div>
       </section>

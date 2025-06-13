@@ -2,23 +2,20 @@
   "name": "blog",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "server:dev": "env-cmd -e server:dev -r ./env-cmdrc.js next dev",
-    "build:dev": "env-cmd -e build:dev -r ./env-cmdrc.js next build",
-    "start:dev": "env-cmd -e start:dev -r ./env-cmdrc.js next start",
-    "server:prod": "env-cmd -e server:prod -r ./env-cmdrc.js next dev",
-    "build:prod": "env-cmd -e build:prod -r ./env-cmdrc.js next build",
-    "start:prod": "env-cmd -e start:prod -r ./env-cmdrc.js next start",
+    "server:dev": "env-cmd -e server:dev next dev",
+    "build:dev": "env-cmd -e build:dev next build",
+    "start:dev": "env-cmd -e start:dev next start",
+    "server:prod": "env-cmd -e server:prod next dev",
+    "build:prod": "env-cmd -e build:prod next build",
+    "start:prod": "env-cmd -e start:prod next start",
     "lint": "next lint",
     "docker:build": "node scripts/docker/build-and-push.js",
-    "docker:quick": "node ./scripts/docker/quick-build.js",
-    "prepare": "husky",
-    "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./src",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
+    "docker:quick": "node ./scripts/docker/quick-build.js"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",
@@ -36,29 +33,25 @@
     "screenfull": "^6.0.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/node": "^20",
-    "@types/react": "^19",
+    "@types/node": "20.19.0",
+    "@types/react": "19.1.8",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
+    "electron-to-chromium": "^1.5.167",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "postcss": "^8.4.35",
+    "postcss-preset-env": "^9.3.0",
     "prettier": "^3.5.3",
     "sass": "^1.89.2",
     "tailwindcss": "^4",
     "tailwindcss-debug-screens": "^3.0.1",
-    "typescript": "^5"
-  },
-  "lint-staged": {
-    "**/*.{js,jsx,tsx,ts}": [
-      "npm run lint:script"
-    ]
+    "typescript": "5.8.3"
   }
 }

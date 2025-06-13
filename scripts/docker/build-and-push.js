@@ -1,5 +1,4 @@
 #!/usr/bin/env node
- 
 
 /**
  * ============================================================================
@@ -26,6 +25,10 @@ import readline from 'readline';
 const CONFIG = {
   // 阿里云容器镜像服务的仓库地址
   REGISTRY_HOST: 'crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com',
+
+  // 阿里云容器镜像服务的仓库用户名
+
+  // 阿里云容器镜像服务的仓库密码
 
   // 镜像命名空间，用于组织和管理镜像
   NAMESPACE: 'jasonblog',
@@ -208,20 +211,13 @@ async function preCheck(options) {
 
       if (!dockerInfo.includes(CONFIG.REGISTRY_HOST)) {
         printWarning('  ├─ ⚠️  未检测到阿里云镜像仓库登录状态');
-        printInfo(`  ├─ 💡 需要登录: docker login ${CONFIG.REGISTRY_HOST}`);
-
-        // 交互式询问用户是否现在登录
-        const answer = await askUser('  └─ 🤔 是否现在登录? (y/n): ');
-        if (answer.toLowerCase() === 'y' || answer.toLowerCase() === 'yes') {
-          printInfo('  ├─ 🔐 正在登录阿里云镜像仓库...');
-          executeCommand(`docker login ${CONFIG.REGISTRY_HOST}`);
-          printSuccess('  ├─ ✅ 登录成功');
-        } else {
-          printError('  └─ ❌ 需要登录后才能推送镜像');
-          process.exit(1);
-        }
+        printInfo('  ├─ 🔑  正在登录阿里云镜像仓库...');
+        await execCommand(
+          `docker login ${CONFIG.REGISTRY_HOST} -u ${CONFIG.REGISTRY_USERNAME} -p ${CONFIG.REGISTRY_PASSWORD}`,
+        );
+        printSuccess('  ├─ ✅  登录成功');
       } else {
-        printSuccess('  ├─ ✅ 已登录阿里云镜像仓库');
+        printSuccess('  ├─ ✅  已登录阿里云镜像仓库');
       }
     } catch (error) {
       printWarning('  ├─ ⚠️  无法检查 Docker 登录状态');
