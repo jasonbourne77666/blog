@@ -45,6 +45,9 @@ COPY --from=build-stage --chown=node:node /app/dist /app/dist
 COPY --from=build-stage --chown=node:node /app/public /app/public
 COPY --from=build-stage --chown=node:node /app/package.json /app/
 COPY --from=build-stage --chown=node:node /app/package-lock.json /app/
+COPY --from=build-stage --chown=node:node /app/.env-cmdrc.json /app/
+COPY --from=build-stage --chown=node:node /app/next.config.ts /app/
+
 
 WORKDIR /app
 
