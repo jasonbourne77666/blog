@@ -7,6 +7,7 @@ import "../css/globals.css";
 import "../css/style.css";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ThemeScript } from "./components/ThemeScript";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 // 配置 Geist 无衬线字体
 const geistSans = Geist({
@@ -46,7 +47,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <AntdRegistry>{children}</AntdRegistry>
+        </ThemeProvider>
       </body>
     </html>
   );
