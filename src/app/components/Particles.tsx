@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useRef, useEffect } from "react";
-import { useMousePosition } from "@/util/mouse";
-import { useTheme } from "../contexts/ThemeContext";
+import React, { useRef, useEffect } from 'react';
+import { useMousePosition } from '@/util/mouse';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface ParticlesProps {
   className?: string;
@@ -13,7 +13,7 @@ interface ParticlesProps {
 }
 
 export default function Particles({
-  className = "",
+  className = '',
   quantity = 30,
   staticity = 50,
   ease = 50,
@@ -22,19 +22,19 @@ export default function Particles({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   const circles = useRef<any[]>([]);
   const mousePosition = useMousePosition();
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
-  const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+  const dpr = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 
   // 获取当前主题
   const { resolvedTheme } = useTheme();
 
   // 根据主题获取粒子颜色
   const getParticleColor = (alpha: number) => {
-    if (resolvedTheme === "dark") {
+    if (resolvedTheme === 'dark') {
       // 深色主题：使用较暗的白色粒子，降低透明度
       const minAlpha = 0.15; // 降低最低可见度
       return `rgba(255, 255, 255, ${Math.max(alpha * 0.4, minAlpha)})`;
@@ -46,7 +46,7 @@ export default function Particles({
 
   useEffect(() => {
     if (canvasRef.current) {
-      context.current = canvasRef.current.getContext("2d");
+      context.current = canvasRef.current.getContext('2d');
     }
     initCanvas();
     animate();
@@ -56,10 +56,10 @@ export default function Particles({
       initCanvas();
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, [resolvedTheme]); // 添加resolvedTheme依赖
 
@@ -73,7 +73,7 @@ export default function Particles({
 
   // 监听主题变化，重新创建所有粒子以适应新主题
   useEffect(() => {
-    console.log("Theme changed to:", resolvedTheme); // 调试日志
+    console.log('Theme changed to:', resolvedTheme); // 调试日志
     if (circles.current.length > 0) {
       // 主题变化时清空现有粒子并重新创建
       circles.current.length = 0;
@@ -133,13 +133,13 @@ export default function Particles({
     const translateY = 0;
     // 根据主题调整粒子大小
     const size =
-      resolvedTheme === "dark"
+      resolvedTheme === 'dark'
         ? Math.floor(Math.random() * 3) + 1.5 // 深色主题：适中的粒子 1.5-4.5
         : Math.floor(Math.random() * 3) + 0.5; // 浅色主题：正常大小 0.5-3.5
     const alpha = 0;
     // 根据主题调整目标透明度
     const targetAlpha =
-      resolvedTheme === "dark"
+      resolvedTheme === 'dark'
         ? parseFloat((Math.random() * 0.4 + 0.2).toFixed(1)) // 深色主题：较低透明度范围 0.2-0.6
         : parseFloat((Math.random() * 0.8 + 0.2).toFixed(1)); // 浅色主题：正常透明度
     const dx = (Math.random() - 0.5) * 0.2;
@@ -165,7 +165,7 @@ export default function Particles({
       context.current.translate(translateX, translateY);
 
       // 添加发光效果
-      if (resolvedTheme === "dark") {
+      if (resolvedTheme === 'dark') {
         // 深色主题：柔和的发光效果
         context.current.shadowColor = `rgba(255, 255, 255, 0.3)`;
         context.current.shadowBlur = size * 2;
@@ -183,8 +183,8 @@ export default function Particles({
       context.current.fill();
 
       // 在深色主题下添加轻微的外圈发光效果
-      if (resolvedTheme === "dark") {
-        context.current.shadowColor = "transparent";
+      if (resolvedTheme === 'dark') {
+        context.current.shadowColor = 'transparent';
         context.current.shadowBlur = 0;
 
         // 单层外圈（轻微光晕）
@@ -195,7 +195,7 @@ export default function Particles({
       }
 
       // 重置阴影效果
-      context.current.shadowColor = "transparent";
+      context.current.shadowColor = 'transparent';
       context.current.shadowBlur = 0;
 
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -212,7 +212,7 @@ export default function Particles({
         0,
         0,
         canvasSize.current.w,
-        canvasSize.current.h
+        canvasSize.current.h,
       );
     }
   };
@@ -231,7 +231,7 @@ export default function Particles({
     start1: number,
     end1: number,
     start2: number,
-    end2: number
+    end2: number,
   ): number => {
     const remapped =
       ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
@@ -250,7 +250,7 @@ export default function Particles({
       ];
       const closestEdge = edge.reduce((a, b) => Math.min(a, b));
       const remapClosestEdge = parseFloat(
-        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2)
+        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2),
       );
       if (remapClosestEdge > 1) {
         circle.alpha += 0.02;
@@ -291,7 +291,7 @@ export default function Particles({
             translateY: circle.translateY,
             alpha: circle.alpha,
           },
-          true
+          true,
         );
       }
     });
@@ -299,7 +299,7 @@ export default function Particles({
   };
 
   return (
-    <div className={className} ref={canvasContainerRef} aria-hidden="true">
+    <div className={className} ref={canvasContainerRef} aria-hidden='true'>
       <canvas ref={canvasRef} />
     </div>
   );

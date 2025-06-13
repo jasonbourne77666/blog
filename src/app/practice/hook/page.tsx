@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import { useState, useRef, useEffect } from "react";
-import useDebounceFn from "@/hooks/useDebounceFn";
-import useDebounce from "@/hooks/useDebounce";
-import useThrottleFn from "@/hooks/useThrottleFn";
-import useLockFn from "@/hooks/useLockFn";
-import useFullscreen from "@/hooks/useFullscreen";
-import useCopy from "@/hooks/useCopy";
-import useTextSelection from "@/hooks/useTextSelection";
-import useResponsive from "@/hooks/useResponsive";
+import { useState, useRef, useEffect } from 'react';
+import useDebounceFn from '@/hooks/useDebounceFn';
+import useDebounce from '@/hooks/useDebounce';
+import useThrottleFn from '@/hooks/useThrottleFn';
+import useLockFn from '@/hooks/useLockFn';
+import useFullscreen from '@/hooks/useFullscreen';
+import useCopy from '@/hooks/useCopy';
+import useTextSelection from '@/hooks/useTextSelection';
+import useResponsive from '@/hooks/useResponsive';
 
 function wait() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve("1");
+      resolve('1');
     }, 2000);
   });
 }
 
 export default function Hook() {
   const fullscreenDom = useRef<HTMLDivElement | null>(null);
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>('');
   // 栅格系统-响应式
   const responsive = useResponsive();
   // console.log(responsive);
@@ -33,18 +33,18 @@ export default function Hook() {
   // 防抖
   const run = useDebounceFn(
     () => {
-      console.log("useDebounceFn");
+      console.log('useDebounceFn');
     },
-    { wait: 1000 }
+    { wait: 1000 },
   );
   const debounceValue = useDebounce(value, { wait: 1000 });
 
   // 节流
   const throttleRun = useThrottleFn(
     () => {
-      console.log("throttleRun");
+      console.log('throttleRun');
     },
-    { wait: 3000 }
+    { wait: 3000 },
   );
 
   // 状态锁 防止重复请求
@@ -59,25 +59,25 @@ export default function Hook() {
   const { isFullscreen, isEnabled, enterFullscreen, exitFullscreen } =
     useFullscreen(targetDom, {
       onEnter: () => {
-        console.log("onEnter");
+        console.log('onEnter');
       },
       onExit: () => {
-        "onExit";
+        'onExit';
       },
     });
 
   return (
-    <main className="grid grid-cols-2 gap-4">
+    <main className='grid grid-cols-2 gap-4'>
       <div>
-        <button className="primary-button" onClick={() => copy("123")}>
-          {copyText || "copyText"}
+        <button className='primary-button' onClick={() => copy('123')}>
+          {copyText || 'copyText'}
         </button>
       </div>
 
       <div ref={fullscreenDom}>
         <button
-          className="primary-button"
-          type="button"
+          className='primary-button'
+          type='button'
           onClick={() => {
             enterFullscreen();
           }}
@@ -85,8 +85,8 @@ export default function Hook() {
           enterFullscreen
         </button>
         <button
-          className="primary-button"
-          type="button"
+          className='primary-button'
+          type='button'
           onClick={() => exitFullscreen()}
         >
           exitFullscreen
@@ -95,21 +95,21 @@ export default function Hook() {
         <p>文字内容文字内容文字内容文字内容文字内容文字内容</p>
       </div>
 
-      <button className="primary-button" type="button" onClick={() => lockFn()}>
+      <button className='primary-button' type='button' onClick={() => lockFn()}>
         lockFn
       </button>
 
-      <button className="primary-button" onClick={() => run()}>
+      <button className='primary-button' onClick={() => run()}>
         debounce
       </button>
 
-      <button className="primary-button" onClick={() => throttleRun()}>
+      <button className='primary-button' onClick={() => throttleRun()}>
         throttleRun
       </button>
       <div>
         <input
-          placeholder={"useDebounce"}
-          type="text"
+          placeholder={'useDebounce'}
+          type='text'
           onChange={(v) => {
             setValue(v.target.value);
           }}

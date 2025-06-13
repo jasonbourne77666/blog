@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useRef, useEffect, useState } from "react";
-import style from "./index.module.scss";
-import { liyrc } from "./data";
+import React, { useRef, useEffect, useState } from 'react';
+import style from './index.module.scss';
+import { liyrc } from './data';
 
 /**
  *
@@ -11,12 +11,12 @@ import { liyrc } from "./data";
  */
 function parseLiyrc(params: string): Array<{ time: number; word: string }> {
   const lines = params
-    .split("\n")
+    .split('\n')
     .filter((item) => {
-      return item && typeof item === "string";
+      return item && typeof item === 'string';
     })
     .map((item, index) => {
-      const parts = item.split("]");
+      const parts = item.split(']');
       const timeStr = parts?.[0]?.substring(1);
       let obj = { time: 0, word: parts?.[1] };
       // console.log(obj);
@@ -31,14 +31,14 @@ function parseLiyrc(params: string): Array<{ time: number; word: string }> {
 }
 
 function parseTime(params: string): number {
-  const parts = params.split(":");
+  const parts = params.split(':');
   return +parts[0] * 60 + +parts[1];
 }
 
 // 计算高亮歌词下标
 function findIndex(
   dom: HTMLAudioElement | null,
-  list: Array<{ time: number; word: string }>
+  list: Array<{ time: number; word: string }>,
 ) {
   const currentTime = dom?.currentTime || 0;
   for (let i = 0; i < list.length; i++) {
@@ -97,13 +97,13 @@ export default function MusicPlayer(props: any) {
           setOffset();
         }}
         controls
-        src="/music/Coldplay-viva la vida.flac"
+        src='/music/Coldplay-viva la vida.flac'
       ></audio>
 
       <div className={style.lyricsWrapper} ref={containerRef}>
         <ul ref={listWrapperRef}>
           {lines.map((item, index) => (
-            <li className={active === index ? style.active : ""} key={index}>
+            <li className={active === index ? style.active : ''} key={index}>
               {item.word}
             </li>
           ))}

@@ -70,12 +70,14 @@ npm run docker:quick v1.2.3
 ## 前置要求
 
 1. **Docker 已安装并运行**
+
    ```bash
    docker --version
    docker info
    ```
 
 2. **已登录阿里云容器镜像服务**
+
    ```bash
    docker login crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com
    ```
@@ -86,11 +88,13 @@ npm run docker:quick v1.2.3
 ## 镜像仓库配置
 
 当前配置的镜像仓库信息：
+
 - **仓库地址**: `crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com`
 - **命名空间**: `jasonblog`
 - **镜像名称**: `blog`
 
 完整镜像地址格式：
+
 ```
 crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com/jasonblog/blog:版本号
 ```
@@ -100,19 +104,23 @@ crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com/jasonblog/blog:版本�
 脚本会自动执行以下操作：
 
 1. ✅ **预检查**
+
    - 检查 Docker 是否运行
    - 检查是否在项目根目录
    - 检查是否已登录阿里云镜像仓库
 
 2. 🔨 **构建镜像**
+
    - 使用项目根目录的 Dockerfile 构建镜像
    - 支持缓存和无缓存构建
 
 3. 📤 **推送镜像**
+
    - 推送到阿里云容器镜像服务
    - 支持多标签推送
 
 4. 📝 **更新配置**
+
    - 自动更新 `docker-compose.yml` 中的镜像版本
    - 创建配置文件备份
 
@@ -123,12 +131,15 @@ crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com/jasonblog/blog:版本�
 ## 版本策略
 
 ### 默认版本号格式
+
 如果不指定版本号，脚本会使用时间戳格式：
+
 ```
 v20231215_143052
 ```
 
 ### 推荐版本号格式
+
 - **语义化版本**: `v1.0.0`, `v1.2.3`
 - **发布版本**: `v2023.12.15`, `v2024.01.01`
 - **特性版本**: `v1.2.3-beta`, `v1.2.3-alpha`
@@ -136,30 +147,38 @@ v20231215_143052
 ## 常见问题
 
 ### Q: 如何修改镜像仓库地址？
+
 A: 编辑脚本文件中的 CONFIG 对象：
+
 ```javascript
 const CONFIG = {
-    REGISTRY_HOST: '你的仓库地址',
-    NAMESPACE: '你的命名空间',
-    IMAGE_NAME: '你的镜像名称'
+  REGISTRY_HOST: '你的仓库地址',
+  NAMESPACE: '你的命名空间',
+  IMAGE_NAME: '你的镜像名称',
 };
 ```
 
 ### Q: 构建失败怎么办？
+
 A: 检查以下项目：
+
 1. Docker 是否正常运行
 2. Dockerfile 语法是否正确
 3. 项目依赖是否完整
 4. 网络连接是否正常
 
 ### Q: 推送失败怎么办？
+
 A: 检查以下项目：
+
 1. 是否已登录阿里云镜像仓库
 2. 网络连接是否正常
 3. 镜像仓库权限是否正确
 
 ### Q: 如何回滚到之前的版本？
+
 A: 使用以下命令：
+
 ```bash
 # 仅推送已存在的旧版本镜像
 node ./scripts/docker/build-and-push.js --push-only v1.2.2
@@ -188,6 +207,7 @@ git push
 ## 脚本维护
 
 如需修改脚本配置，主要关注以下文件：
+
 - `build-and-push.js`: 完整功能脚本
 - `quick-build.js`: 快速构建脚本
-- `package.json`: npm 脚本配置 
+- `package.json`: npm 脚本配置

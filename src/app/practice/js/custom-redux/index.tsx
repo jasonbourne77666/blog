@@ -1,6 +1,6 @@
-import { useEffect, useState, useContext } from "react";
-import { createStore } from "./custom-redux/mini-redux";
-import { counter, add, remove } from "./custom-redux/store";
+import { useEffect, useState, useContext } from 'react';
+import { createStore } from './custom-redux/mini-redux';
+import { counter, add, remove } from './custom-redux/store';
 
 const store = createStore(counter);
 

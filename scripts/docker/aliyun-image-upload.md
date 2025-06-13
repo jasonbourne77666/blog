@@ -7,8 +7,7 @@ $ docker login --username=平头超哥windy crpi-6a105b9464djyzkq.cn-chengdu.per
 
 2. 从Registry中拉取镜像
 
-$ docker pull crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com/jasonblog/blog:[镜像版本号]
-3. 将镜像推送到Registry
+$ docker pull crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com/jasonblog/blog:[镜像版本号] 3. 将镜像推送到Registry
 
 $ docker login --username=平头超哥windy crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com
 $ docker tag [ImageId] crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com/jasonblog/blog:[镜像版本号]

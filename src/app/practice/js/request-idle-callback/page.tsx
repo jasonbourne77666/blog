@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from 'react';
 
 /**
  * 分时函数 类似react fiber调和
  * @returns
  */
 function performChunk(datas, handler: (value?: any, index?: number) => void) {
-  if (typeof datas === "number") {
+  if (typeof datas === 'number') {
     datas = { length: datas };
   }
   if (datas.length === 0) return;
@@ -30,14 +30,14 @@ function performChunk(datas, handler: (value?: any, index?: number) => void) {
 
 const App: React.FunctionComponent = () => {
   const [state, setState] = useState<Array<number>>(
-    Array.from({ length: 100000 }, (_, i) => i)
+    Array.from({ length: 100000 }, (_, i) => i),
   );
 
   // 插入dom
   function handle(data, i?: number) {
-    const dom = document.getElementById("wrapper");
-    const div = document.createElement("div");
-    div.textContent = "" + data;
+    const dom = document.getElementById('wrapper');
+    const div = document.createElement('div');
+    div.textContent = '' + data;
     dom?.appendChild(div);
   }
 
@@ -53,11 +53,11 @@ const App: React.FunctionComponent = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className='grid grid-cols-2 gap-4'>
         <button onClick={clickHandle}>生成10000个元素 优化后</button>
         <button onClick={clickHandleBad}>生成10000个元素 未优化</button>
       </div>
-      <div id="wrapper"></div>
+      <div id='wrapper'></div>
     </div>
   );
 };

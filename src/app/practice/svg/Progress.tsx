@@ -1,7 +1,7 @@
-"use clien";
+'use clien';
 
-import { useState, useRef, useEffect } from "react";
-import styles from "./Progress.module.scss";
+import { useState, useRef, useEffect } from 'react';
+import styles from './Progress.module.scss';
 
 const Progress: React.FC<any> = () => {
   const length: number = 2 * Math.PI * 100;
@@ -32,9 +32,9 @@ const Progress: React.FC<any> = () => {
           cx={150}
           cy={150}
           r={100}
-          fill={"transparent"}
+          fill={'transparent'}
           strokeWidth={12}
-          stroke={"#999"}
+          stroke={'#999'}
           style={{
             strokeDasharray: length,
             strokeDashoffset: lengthOffset,
@@ -44,9 +44,9 @@ const Progress: React.FC<any> = () => {
           x={150}
           y={150}
           fontSize={24}
-          fill={"#999"}
-          textAnchor={"middle"}
-          alignmentBaseline={"middle"}
+          fill={'#999'}
+          textAnchor={'middle'}
+          alignmentBaseline={'middle'}
         >
           {`${rate} %`}
         </text>

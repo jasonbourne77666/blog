@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import classnames from "classnames";
-import style from "../index.module.scss";
+import { useEffect } from 'react';
+import classnames from 'classnames';
+import style from '../index.module.scss';
 
 // 曲线函数计算
 class Curve {
@@ -44,7 +44,7 @@ function layout(
   curve: Curve,
   doms: Array<HTMLLIElement | Element>,
   width: number,
-  height: number
+  height: number,
 ) {
   const [minX, maxX] = curve.xRang;
   const [minY, maxY] = curve.yRang;
@@ -70,44 +70,44 @@ function layout(
     // (x - cx) 平移原点坐标，demo原点在容器正中间。
     const dx = (x - cx) * xScale;
     const dy = (y - cy) * yScale;
-    dom.style.setProperty("--dx", String(dx));
-    dom.style.setProperty("--dy", String(dy));
+    dom.style.setProperty('--dx', String(dx));
+    dom.style.setProperty('--dy', String(dy));
   }
 }
 
 const waves = {
   wave() {
-    const container = document.querySelector(".mathPositionWrapper");
-    const doms = document.querySelectorAll(".mathPositionWrapper li");
+    const container = document.querySelector('.mathPositionWrapper');
+    const doms = document.querySelectorAll('.mathPositionWrapper li');
 
     const wave = new Curve(
       (x: number) => Math.sin(x),
       // [-1 * Math.PI, 3 * Math.PI],
       [0, 3 * Math.PI],
-      [-1, 1]
+      [-1, 1],
     );
     layout(
       wave,
       [...doms],
       container!.clientWidth - 100,
-      container!.clientHeight - 100
+      container!.clientHeight - 100,
     );
   },
   line() {
-    const container = document.querySelector(".mathPositionWrapper");
-    const doms = document.querySelectorAll(".mathPositionWrapper li");
+    const container = document.querySelector('.mathPositionWrapper');
+    const doms = document.querySelectorAll('.mathPositionWrapper li');
 
     const wave = new Curve((x: number) => 0, [0, 1], [-1, 1]);
     layout(
       wave,
       [...doms],
       container!.clientWidth - 100,
-      container!.clientHeight
+      container!.clientHeight,
     );
   },
   crossLine() {
-    const container = document.querySelector(".mathPositionWrapper");
-    const doms = document.querySelectorAll(".mathPositionWrapper li");
+    const container = document.querySelector('.mathPositionWrapper');
+    const doms = document.querySelectorAll('.mathPositionWrapper li');
     const line1 = new Curve((x: number) => x, [-1, 1], [-1, 1]);
     const line2 = new Curve((x: number) => -x, [-1, 1], [-1, 1]);
     const midIndex = Math.floor(doms.length / 2);
@@ -118,27 +118,27 @@ const waves = {
       line1,
       [...doms1],
       container!.clientWidth - 100,
-      container!.clientHeight - 100
+      container!.clientHeight - 100,
     );
     layout(
       line2,
       [...doms2],
       container!.clientWidth - 100,
-      container!.clientHeight - 100
+      container!.clientHeight - 100,
     );
   },
   crossWave() {
-    const container = document.querySelector(".mathPositionWrapper");
-    const doms = document.querySelectorAll(".mathPositionWrapper li");
+    const container = document.querySelector('.mathPositionWrapper');
+    const doms = document.querySelectorAll('.mathPositionWrapper li');
     const line1 = new Curve(
       (x: number) => Math.sin(x),
       [-1 * Math.PI, 1 * Math.PI],
-      [-1, 1]
+      [-1, 1],
     );
     const line2 = new Curve(
       (x: number) => Math.sin(x),
       [0, 2 * Math.PI],
-      [-1, 1]
+      [-1, 1],
     );
     const midIndex = Math.floor(doms.length / 2);
     const doms1 = Array.from(doms).slice(0, midIndex);
@@ -148,13 +148,13 @@ const waves = {
       line1,
       [...doms1],
       container!.clientWidth - 100,
-      container!.clientHeight - 100
+      container!.clientHeight - 100,
     );
     layout(
       line2,
       [...doms2],
       container!.clientWidth - 100,
-      container!.clientHeight - 100
+      container!.clientHeight - 100,
     );
   },
 };
@@ -166,22 +166,22 @@ const App = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-4" style={{ padding: "20px 0" }}>
-        <button className="primary-button" onClick={waves.wave}>
+      <div className='grid grid-cols-3 gap-4' style={{ padding: '20px 0' }}>
+        <button className='primary-button' onClick={waves.wave}>
           波浪
         </button>
-        <button className="primary-button" onClick={waves.line}>
+        <button className='primary-button' onClick={waves.line}>
           直线
         </button>
-        <button className="primary-button" onClick={waves.crossLine}>
+        <button className='primary-button' onClick={waves.crossLine}>
           交叉直线
         </button>
-        <button className="primary-button" onClick={waves.crossWave}>
+        <button className='primary-button' onClick={waves.crossWave}>
           交叉波浪
         </button>
       </div>
       <ul
-        className={classnames(style.mathPositionWrapper, "mathPositionWrapper")}
+        className={classnames(style.mathPositionWrapper, 'mathPositionWrapper')}
       >
         {Array.from({ length: 50 }, (_, index) => index).map((item) => (
           <li key={item} />

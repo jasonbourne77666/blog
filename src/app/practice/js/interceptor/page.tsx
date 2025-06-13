@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 // import styles from './Interceptor.module.scss';
-import { useEffect, useCallback, memo, useRef } from "react";
+import { useEffect, useCallback, memo, useRef } from 'react';
 
 type AspectFn = (..._p: any[]) => Promise<void>;
 
@@ -24,7 +24,7 @@ class InterceptorClass<T = any> {
           await b(context, a);
         };
       },
-      () => Promise.resolve()
+      () => Promise.resolve(),
     );
 
     try {
@@ -115,7 +115,7 @@ const Interceptor: React.FC = (props: any) => {
 
             return {
               next() {
-                const key = keys.shift() || "";
+                const key = keys.shift() || '';
                 const nextValue = obj[key];
                 length--;
                 return {

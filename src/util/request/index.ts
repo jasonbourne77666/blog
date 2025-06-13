@@ -1,4 +1,4 @@
-import { message } from "antd";
+import { message } from 'antd';
 
 // 请求配置接口：扩展自 RequestInit，添加自定义配置项
 interface RequestConfig extends RequestInit {
@@ -17,7 +17,7 @@ interface ResponseData<T = any> {
 interface RequestError extends Error {
   code?: number; // 业务错误码
   status?: number; // HTTP状态码
-  type?: "timeout" | "abort" | "error"; // 错误类型
+  type?: 'timeout' | 'abort' | 'error'; // 错误类型
 }
 
 class Request {
@@ -26,7 +26,7 @@ class Request {
   private controller: AbortController | null = null; // 请求取消控制器
   private timeoutId: NodeJS.Timeout | null = null; // 超时定时器
 
-  constructor(baseURL: string = "", timeout: number = 10000) {
+  constructor(baseURL: string = '', timeout: number = 10000) {
     this.baseURL = baseURL;
     this.timeout = timeout;
   }
@@ -40,10 +40,10 @@ class Request {
     const queryString = Object.entries(params)
       .map(
         ([key, value]) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}` // 对参数进行URL编码
+          `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`, // 对参数进行URL编码
       )
-      .join("&"); // 用&连接所有参数
-    return `${fullURL}${fullURL.includes("?") ? "&" : "?"}${queryString}`; // 根据URL是否已有参数决定使用?还是&
+      .join('&'); // 用&连接所有参数
+    return `${fullURL}${fullURL.includes('?') ? '&' : '?'}${queryString}`; // 根据URL是否已有参数决定使用?还是&
   }
 
   // 设置超时处理
@@ -56,8 +56,8 @@ class Request {
     // 设置新的超时定时器
     this.timeoutId = setTimeout(() => {
       this.cancel(); // 超时时取消请求
-      const error: RequestError = new Error("请求超时");
-      error.type = "timeout";
+      const error: RequestError = new Error('请求超时');
+      error.type = 'timeout';
       this.handleError(error);
     }, timeout);
   }
@@ -84,7 +84,7 @@ class Request {
       ...rest, // 保留其他配置
       signal: this.controller.signal, // 设置取消信号
       headers: {
-        "Content-Type": "application/json", // 设置默认请求头
+        'Content-Type': 'application/json', // 设置默认请求头
         ...rest.headers, // 合并自定义请求头
       },
     };
@@ -97,9 +97,9 @@ class Request {
 
     // 检查HTTP状态码
     if (!response.ok) {
-      const error: RequestError = new Error("请求失败");
+      const error: RequestError = new Error('请求失败');
       error.status = response.status;
-      error.type = "error";
+      error.type = 'error';
       throw error;
     }
 
@@ -108,9 +108,9 @@ class Request {
 
     // 检查业务状态码
     if (data.code !== 0) {
-      const error: RequestError = new Error(data.message || "请求失败");
+      const error: RequestError = new Error(data.message || '请求失败');
       error.code = data.code;
-      error.type = "error";
+      error.type = 'error';
       throw error;
     }
 
@@ -130,7 +130,7 @@ class Request {
   // GET请求方法
   public async get<T = any>(
     url: string,
-    config: RequestConfig = {}
+    config: RequestConfig = {},
   ): Promise<T> {
     const { params, ...rest } = config; // 分离URL参数和其他配置
     const finalURL = this.handleURL(url, params); // 处理完整URL
@@ -139,7 +139,7 @@ class Request {
     try {
       const response = await fetch(finalURL, {
         ...finalConfig,
-        method: "GET", // 设置请求方法为GET
+        method: 'GET', // 设置请求方法为GET
       });
       return this.handleResponse<T>(response);
     } catch (error) {
@@ -152,7 +152,7 @@ class Request {
   public async post<T = any>(
     url: string,
     data?: any,
-    config: RequestConfig = {}
+    config: RequestConfig = {},
   ): Promise<T> {
     const finalURL = this.handleURL(url, config.params);
     const finalConfig = this.handleConfig(config);
@@ -160,7 +160,7 @@ class Request {
     try {
       const response = await fetch(finalURL, {
         ...finalConfig,
-        method: "POST", // 设置请求方法为POST
+        method: 'POST', // 设置请求方法为POST
         body: data ? JSON.stringify(data) : undefined, // 将数据转换为JSON字符串
       });
       return this.handleResponse<T>(response);
@@ -174,7 +174,7 @@ class Request {
   public async put<T = any>(
     url: string,
     data?: any,
-    config: RequestConfig = {}
+    config: RequestConfig = {},
   ): Promise<T> {
     const finalURL = this.handleURL(url, config.params);
     const finalConfig = this.handleConfig(config);
@@ -182,7 +182,7 @@ class Request {
     try {
       const response = await fetch(finalURL, {
         ...finalConfig,
-        method: "PUT", // 设置请求方法为PUT
+        method: 'PUT', // 设置请求方法为PUT
         body: data ? JSON.stringify(data) : undefined,
       });
       return this.handleResponse<T>(response);
@@ -195,7 +195,7 @@ class Request {
   // DELETE请求方法
   public async delete<T = any>(
     url: string,
-    config: RequestConfig = {}
+    config: RequestConfig = {},
   ): Promise<T> {
     const finalURL = this.handleURL(url, config.params);
     const finalConfig = this.handleConfig(config);
@@ -203,7 +203,7 @@ class Request {
     try {
       const response = await fetch(finalURL, {
         ...finalConfig,
-        method: "DELETE", // 设置请求方法为DELETE
+        method: 'DELETE', // 设置请求方法为DELETE
       });
       return this.handleResponse<T>(response);
     } catch (error) {
@@ -217,16 +217,16 @@ class Request {
     // 清除超时定时器
     this.clearTimeout();
 
-    if (error.name === "AbortError") {
-      message.warning("请求已取消"); // 显示请求取消提示
+    if (error.name === 'AbortError') {
+      message.warning('请求已取消'); // 显示请求取消提示
       return;
     }
 
     // 根据错误类型显示不同的错误信息
     const errorMessage =
-      error.type === "timeout"
-        ? "请求超时，请稍后重试"
-        : error.message || "请求失败";
+      error.type === 'timeout'
+        ? '请求超时，请稍后重试'
+        : error.message || '请求失败';
 
     message.error(errorMessage); // 显示错误提示
   }

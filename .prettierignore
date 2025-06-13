@@ -1,0 +1,22 @@
+# 构建输出
+.next
+out
+build
+dist
+
+# 依赖
+node_modules
+
+# 日志
+*.log
+
+# 环境变量
+.env*
+!.env.example
+
+# 其他
+.DS_Store
+*.pem
+coverage
+.vercel
+.turbo 

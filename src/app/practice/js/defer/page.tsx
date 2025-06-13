@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 // 任务分段
 
@@ -17,7 +17,7 @@ const useDefer = (maxCount: number = 100) => {
       updateCount();
     });
   };
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     updateCount();
   }
 

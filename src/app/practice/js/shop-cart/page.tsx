@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useRef } from "react";
-import style from "./index.module.scss";
-import { PlusCircle } from "lucide-react";
+import React, { useRef } from 'react';
+import style from './index.module.scss';
+import { PlusCircle } from 'lucide-react';
 
 const goods = [
   {
-    pic: "./assets/g1.png",
-    title: "椰云拿铁",
+    pic: './assets/g1.png',
+    title: '椰云拿铁',
     desc: `1人份【年度重磅，一口吞云】
 
     √原创椰云topping，绵密轻盈到飞起！
@@ -21,8 +21,8 @@ const goods = [
     price: 32,
   },
   {
-    pic: "./assets/g2.png",
-    title: "生椰拿铁",
+    pic: './assets/g2.png',
+    title: '生椰拿铁',
     desc: `1人份【YYDS，无限回购】
     现萃香醇Espresso，遇见优质冷榨生椰浆，椰香浓郁，香甜清爽，带给你不一样的拿铁体验！
     
@@ -33,8 +33,8 @@ const goods = [
     price: 19.9,
   },
   {
-    pic: "./assets/g3.png",
-    title: "加浓 美式",
+    pic: './assets/g3.png',
+    title: '加浓 美式',
     desc: `1人份【清醒加倍，比标美多一份Espresso】
     口感更佳香醇浓郁，回味持久
     图片仅供参考，请以实物为准。建议送达后尽快饮用。`,
@@ -43,8 +43,8 @@ const goods = [
     price: 20.3,
   },
   {
-    pic: "./assets/g4.png",
-    title: "瓦尔登蓝钻瑞纳冰",
+    pic: './assets/g4.png',
+    title: '瓦尔登蓝钻瑞纳冰',
     desc: `1人份【爆款回归！蓝色治愈力量】
     灵感来自下澄明、碧蓝之境---瓦尔登湖。含藻蓝蛋白，梦幻蓝色源自天然植物成分，非人工合成色素，融入人气冷榨生椰浆，椰香浓郁，清冽冰爽；底部添加Q弹小料，0脂原味晶球，光泽剔透，如钻石般blingbling。搭配奶油顶和彩虹色棉花糖，满足你的少女心～
     【去奶油小提示】由于去掉奶油后顶料口味会受影响，为保证口感，选择“去奶油”选项时将同时去掉奶油及顶料，请注意哦！【温馨提示】瑞纳冰系列产品形态为冰沙，无法进行少冰、去冰操作，请您谅解。【图片仅供参考，请以实物为准】`,
@@ -53,8 +53,8 @@ const goods = [
     price: 38,
   },
   {
-    pic: "./assets/g5.png",
-    title: "椰云精萃美式",
+    pic: './assets/g5.png',
+    title: '椰云精萃美式',
     desc: `1人份【不用吸管 大口吞云！】
 
     1杯热量*≈0.6个苹果！
@@ -73,7 +73,7 @@ const App: React.FC<any> = (props) => {
   const carDom = useRef<HTMLDivElement>(null);
   const jump = (index: number) => {
     const domRect = carDom.current?.getBoundingClientRect();
-    const startDom = listDom.current?.children[index].querySelector("i");
+    const startDom = listDom.current?.children[index].querySelector('i');
     const startRect = startDom?.getBoundingClientRect();
     const start = {
       x: startRect?.left,
@@ -85,19 +85,19 @@ const App: React.FC<any> = (props) => {
         x: domRect?.left + domRect?.width / 2,
         y: domRect.top + domRect.height / 5,
       };
-      const wrapper = document.createElement("div");
-      const d = document.createElement("div");
-      wrapper.className = "add_car_fly";
+      const wrapper = document.createElement('div');
+      const d = document.createElement('div');
+      wrapper.className = 'add_car_fly';
       wrapper.style.transform = `translateX(${start.x}px)`;
-      wrapper.style.opacity = "1";
+      wrapper.style.opacity = '1';
 
       // 清除动画
-      carDom.current?.addEventListener("animationend", () => {
+      carDom.current?.addEventListener('animationend', () => {
         carDom.current?.classList.remove(style.animation);
       });
       // 删除wrapper
       wrapper.addEventListener(
-        "transitionend",
+        'transitionend',
         () => {
           wrapper.remove();
           // 购物车加动画
@@ -105,10 +105,10 @@ const App: React.FC<any> = (props) => {
         },
         {
           once: true, //仅触发一次
-        }
+        },
       );
 
-      d.textContent = "+";
+      d.textContent = '+';
       d.style.transform = `translateY(${start.y}px)`;
 
       wrapper.appendChild(d);
@@ -130,7 +130,7 @@ const App: React.FC<any> = (props) => {
             <div className={style.left}></div>
             <div className={style.right}>
               <p>{item.title}</p>
-              <div className="flex items-center justify-end">
+              <div className='flex items-center justify-end'>
                 <i
                   onClick={() => {
                     jump(index);

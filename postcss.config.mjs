@@ -1,11 +1,5 @@
 const config = {
-  plugins: ["@tailwindcss/postcss"],
-  autoprefixer: {
-    flexbox: "no-2009",
-  },
-  cssnano: {
-    preset: "default",
-  },
+  plugins: ['@tailwindcss/postcss'],
 };
 
 export default config;
