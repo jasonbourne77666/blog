@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Particles from './components/Particles';
 import Link from 'next/link';
 import request from '@/util/request';
+import dayjs from 'dayjs';
 
 const navigation = [
   { name: 'Blog', href: '/blog' },
@@ -10,7 +11,8 @@ const navigation = [
 
 export default async function Home() {
   const res = await request.get<string>('/health');
-  console.log('res', res);
+  const deployTime = dayjs(res).format('YYYY-MM-DD HH:mm:ss');
+
   return (
     <main className='min-h-screen text-foreground overflow-hidden  bg-theme-gradient relative z-10'>
       {/* 主题渐变背景说明：
@@ -45,8 +47,11 @@ export default async function Home() {
         <div className='hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0' />
         <div className='my-16 text-center animate-fade-in'>
           <h2 className='text-sm text-zinc-500 '>
-            就一个个人网站，学习和测试用 {res || ''}
+            就一个个人网站，学习和测试用
           </h2>
+          <p className='text-md text-transparent mt-2 hover:text-zinc-900 hover:cursor-pointer'>
+            deployTime：{deployTime}
+          </p>
         </div>
       </section>
     </main>
