@@ -58,7 +58,7 @@ const data2 = [
   {
     slug: '/practice/js/music-player',
     title: '音乐播放器',
-    description: '字幕滚动效果',
+    description: '字幕滚动效果，元素定位',
     date: '2025-01-08',
     views: 200,
   },
@@ -70,7 +70,35 @@ const data2 = [
     views: 200,
   },
 ];
-const data3 = [];
+const data3 = [
+  {
+    slug: '/practice/css/animation-underline',
+    title: '动画',
+    description: '下划线动画、磨砂效果、滤镜',
+    date: '2025-01-10',
+    views: 200,
+  },
+];
+
+const data4 = [
+  {
+    slug: '/practice/svg/progress',
+    title: '进度条',
+    description: 'svg进度条',
+    date: '2025-01-11',
+    views: 200,
+  },
+];
+
+const data5 = [
+  {
+    slug: '/practice/canvas/draw-tree',
+    title: '绘制树',
+    description: 'canvas绘制树',
+    date: '2025-01-12',
+    views: 200,
+  },
+];
 
 export default async function BlogPage() {
   return (
@@ -99,7 +127,9 @@ export default async function BlogPage() {
           </div>
         </div>
         <div className='w-full h-px bg-zinc-200 dark:bg-zinc-800' />
-
+        <h2 className='text-3xl text-card-foreground font-bold tracking-tight sm:text-4xl'>
+          javascript
+        </h2>
         <div className='grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3'>
           <div className='grid grid-cols-1 gap-4'>
             {data2
@@ -122,6 +152,51 @@ export default async function BlogPage() {
           <div className='grid grid-cols-1 gap-4'>
             {data2
               .filter((_, i) => i % 3 === 2)
+              .map((blog) => (
+                <Card key={blog.slug}>
+                  <Wrapper blog={blog} views={blog.views ?? 0} />
+                </Card>
+              ))}
+          </div>
+        </div>
+        <div className='w-full h-px bg-zinc-200 dark:bg-zinc-800' />
+        <h2 className='text-3xl text-card-foreground font-bold tracking-tight sm:text-4xl'>
+          css
+        </h2>
+        <div className='grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-4'>
+            {data3
+              .filter((_, i) => i % 3 === 0)
+              .map((blog) => (
+                <Card key={blog.slug}>
+                  <Wrapper blog={blog} views={blog.views ?? 0} />
+                </Card>
+              ))}
+          </div>
+        </div>
+        <div className='w-full h-px bg-zinc-200 dark:bg-zinc-800' />
+        <h2 className='text-3xl text-card-foreground font-bold tracking-tight sm:text-4xl'>
+          svg
+        </h2>
+        <div className='grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-4'>
+            {data4
+              .filter((_, i) => i % 3 === 0)
+              .map((blog) => (
+                <Card key={blog.slug}>
+                  <Wrapper blog={blog} views={blog.views ?? 0} />
+                </Card>
+              ))}
+          </div>
+        </div>
+        <div className='w-full h-px bg-zinc-200 dark:bg-zinc-800' />
+        <h2 className='text-3xl text-card-foreground font-bold tracking-tight sm:text-4xl'>
+          canvas
+        </h2>
+        <div className='grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-4'>
+            {data5
+              .filter((_, i) => i % 3 === 0)
               .map((blog) => (
                 <Card key={blog.slug}>
                   <Wrapper blog={blog} views={blog.views ?? 0} />

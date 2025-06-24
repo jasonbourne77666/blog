@@ -1,7 +1,7 @@
-'use clien';
+'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import styles from './Progress.module.scss';
+import styles from './index.module.scss';
 
 const Progress: React.FC<any> = () => {
   const length: number = 2 * Math.PI * 100;

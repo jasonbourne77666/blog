@@ -14,7 +14,7 @@ const AnimationUnderline: React.FC<any> = () => {
         <div className='bg-card p-4 rounded-lg'>
           <h2 className={styles.title}>
             <span>
-              背景色渐变-背景色渐变-背景色渐变-背景色渐变-背景色渐变-背景色渐变
+              背景色 hover移入：从左到右，hover移出：从左到右 直至结束
             </span>
           </h2>
         </div>
