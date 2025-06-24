@@ -58,7 +58,7 @@ RUN npm ci --omit=dev
 USER node
 
 # 验证文件存在
-RUN ls -la /app/
+RUN ls -la /app/dist
 
 EXPOSE 3010
 

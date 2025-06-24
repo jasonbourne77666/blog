@@ -3,7 +3,7 @@
 
 services:
   app:
-    image: crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com/jasonblog/blog:v20250613_214031
+    image: crpi-6a105b9464djyzkq.cn-chengdu.personal.cr.aliyuncs.com/jasonblog/blog:v20250624_205624
     container_name: blog-prod # 容器名称
     ports:
       - "3010:3010" # 端口映射：主机3000端口 -> 容器3000端口
