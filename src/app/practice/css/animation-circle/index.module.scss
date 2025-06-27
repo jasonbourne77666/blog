@@ -1,0 +1,55 @@
+$width: 600px;
+$height: 600px;
+
+$item-width: 80px;
+$item-height: 80px;
+
+$n: 5;
+$pDeg: 360deg / $n;
+
+@keyframes rotation {
+  to {
+    transform: rotate(calc(360deg + var(--initial-deg, 0deg)));
+  }
+}
+
+.component {
+  .circle {
+    width: $width;
+    height: $height;
+    border-radius: 50%;
+    border: 2px solid red;
+    position: relative;
+    margin: 0 auto;
+    animation: rotation 20s linear infinite;
+
+    .item {
+      width: $item-width;
+      height: $item-height;
+      border-radius: 50%;
+      overflow: hidden;
+      position: absolute;
+      top: -$item-width / 2;
+      left: 50%;
+      margin-left: -$item-width / 2;
+      transform-origin: center $width / 2 + $item-width / 2;
+
+      @for $i from 1 through $n {
+        $deg: $pDeg * ($i - 1);
+
+        &:nth-child(#{$i}) {
+          transform: rotate($deg);
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            --initial-deg: -#{$deg}; // 用插值，scss明确知道哪些是变量
+            // 始终保持头朝上，将图片旋转回来
+            transform: rotate(-$deg);
+            animation: rotation 20s linear infinite reverse; // 反向旋转
+          }
+        }
+      }
+    }
+  }
+}

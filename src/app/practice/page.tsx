@@ -28,6 +28,13 @@ const data2 = [
     views: 100000,
   },
   {
+    slug: '/practice/js/start-pause',
+    title: '任务队列',
+    description: '任务队列的中断和恢复',
+    date: '2025-01-03',
+    views: 100000,
+  },
+  {
     slug: '/practice/js/interceptor',
     title: '洋葱模型',
     description: '模拟洋葱模型',
@@ -76,6 +83,13 @@ const data3 = [
     title: '动画',
     description: '下划线动画、磨砂效果、滤镜',
     date: '2025-01-10',
+    views: 200,
+  },
+  {
+    slug: '/practice/css/animation-circle',
+    title: '动画圆环',
+    description: 'scss变量和css变量 用于动画',
+    date: '2025-01-11',
     views: 200,
   },
 ];
