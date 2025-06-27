@@ -21,29 +21,32 @@ export default function StartPausePage() {
   }, []);
 
   function processTasks(...tasks) {
-    let isPause = false;
+    let isRunning = false;
     const result: any[] = [];
     // 得到所有结果前，任务是挂起状态
 
     return {
       start() {
         return new Promise(async (resolve) => {
-          isPause = false;
+          if (isRunning) {
+            return;
+          }
+          isRunning = true;
           while (tasks.length) {
             const task = tasks.shift();
             const res = await task();
             result.push(res);
 
-            if (isPause) {
-              break;
+            if (!isRunning) {
+              return;
             }
           }
-          isPause = true;
+          isRunning = false;
           resolve(result);
         });
       },
       pause() {
-        isPause = true;
+        isRunning = false;
       },
     };
   }
@@ -59,13 +62,13 @@ export default function StartPausePage() {
           });
         }}
       >
-        开始
+        任务开始
       </button>
       <button
         className='px-4 py-2 bg-red-500 text-white rounded-md cursor-pointer hover:bg-red-600'
         onClick={pause}
       >
-        暂停
+        任务暂停
       </button>
     </div>
   );

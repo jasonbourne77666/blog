@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 $width: 600px;
 $height: 600px;
 
@@ -5,7 +7,7 @@ $item-width: 80px;
 $item-height: 80px;
 
 $n: 5;
-$pDeg: 360deg / $n;
+$pDeg: math.div(360deg, $n);
 
 @keyframes rotation {
   to {
@@ -29,10 +31,10 @@ $pDeg: 360deg / $n;
       border-radius: 50%;
       overflow: hidden;
       position: absolute;
-      top: -$item-width / 2;
+      top: calc(-#{$item-width} / 2);
       left: 50%;
-      margin-left: -$item-width / 2;
-      transform-origin: center $width / 2 + $item-width / 2;
+      margin-left: calc(-#{$item-width} / 2);
+      transform-origin: center calc(#{$width} / 2 + #{$item-width} / 2);
 
       @for $i from 1 through $n {
         $deg: $pDeg * ($i - 1);
